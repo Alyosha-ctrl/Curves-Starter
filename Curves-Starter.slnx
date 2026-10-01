@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="Curves.csproj" />
+  <Project Path="Curves.EditModeTests.csproj" />
+</Solution>
