@@ -40,7 +40,11 @@ public static class QuadraticBezierMath
         // TODO Slice 6.1: evaluate the Bernstein equation above.
         // Check: BernsteinQuadratic_SamplesPointFromEquivalentQuadraticFormula passes.
         // Next: Slice 6.2 in Demo/QuadraticBezierCurve.cs.
-        return (1-t)*(1-t)*p0 + 2*(1-t)*t*p1 + t*t*p2;
+        float tC = 1-t;
+        float weight0 = tC*tC;
+        float weight1 = 2f* tC * t;
+        float weight2 = t*t;
+        return p0*weight0 + p1*weight1 + p2*weight2;
     }
 
     public static Vector3 SampleTangentBernstein(Vector3 p0, Vector3 p1, Vector3 p2, float t)
@@ -52,7 +56,11 @@ public static class QuadraticBezierMath
         // Check: BernsteinQuadratic_SamplesTangentFromDerivativeFormula passes.
         // Next: Slice 6.4 in Demo/QuadraticBezierCurve.cs.
         //Alright the t will disolve, so only p1, and p2
-        return 2*p1 + t*p2;
+        float tC = 1-t;
+        float weight0 = -2f*tC;
+        float weight1 = 2f*(1f - 2f * t);
+        float weight2 = 2f*t;
+        return p0*weight0 + p1*weight1 + p2*weight2;
     }
 
     // C0 = P0
